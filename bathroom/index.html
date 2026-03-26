@@ -4,88 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toilet Reservation Planner – AF</title>
-
-    <style>
-        body {
-            font-family: Roboto, sans-serif;
-            background: #f2f2f2;
-            margin: 0;
-            padding: 40px 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        .container {
-            background: white;
-            padding: 30px;
-            width: 100%;
-            max-width: 420px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        h2 {
-            margin-top: 0;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
-        input, button {
-            width: 90%;
-            max-width: 300px;
-            padding: 12px;
-            margin-top: 12px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-
-        button {
-            background: #0078d4;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #005ea1;
-        }
-
-        #result {
-            margin-top: 20px;
-            font-weight: bold;
-            color: green;
-            display: none;
-        }
-
-        /* Confetti particles */
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: red;
-            top: -10px;
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0.9;
-            animation: fall 2s linear forwards;
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-            }
-        }
-    </style>
+ <style>
+    body {
+        font-family: Roboto, sans-serif;
+        background: #f2f2f2;
+        padding: 40px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .container {
+        background: white;
+        padding: 25px;
+        width: 100%;
+        max-width: 400px;
+        margin: auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    input, button {
+        width: 90%;
+        max-width: 300px;       /* voorkomt dat ze te breed worden */
+        padding: 12px;
+        margin-top: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        margin-left: auto;
+        margin-right: auto;     /* zorgt voor echte centrering */
+    }
+    button {
+        background: #0078d4;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #005ea1;
+    }
+    #result {
+        margin-top: 20px;
+        font-weight: bold;
+        color: green;
+        display: none;
+    }
+</style>
 </head>
-
 <body>
 
 <div class="container">
@@ -93,9 +65,15 @@
     <p>Reserve your timeslot to use the toilet.</p>
 
     <form id="toiletForm">
-        <input type="text" id="name" placeholder="Your name" required>
+        <label>Name:</label>
+        <input type="text" id="name" required>
+
+        <label>Select a date:</label>
         <input type="date" id="date" required>
+
+        <label>Select a time:</label>
         <input type="time" id="time" required>
+
         <button type="submit">Book Reservation</button>
     </form>
 
@@ -103,50 +81,24 @@
 </div>
 
 <script>
-// Confetti generator
-function launchConfetti() {
-    const duration = 1200;
-    const end = Date.now() + duration;
+    document.getElementById("toiletForm").addEventListener("submit", function(e) {
+        e.preventDefault();
 
-    (function frame() {
-        const particle = document.createElement("div");
-        particle.classList.add("confetti");
+        const name = document.getElementById("name").value;
+        const date = document.getElementById("date").value;
+        const time = document.getElementById("time").value;
 
-        particle.style.left = Math.random() * 100 + "vw";
-        particle.style.background = `hsl(${Math.random()*360}, 100%, 50%)`;
-        particle.style.transform = `translateY(0vh) rotate(${Math.random()*360}deg)`;
+        const message = `Hi ${name}, your toilet reservation on ${date} at ${time} has been successfully booked!`;
+        const result = document.getElementById("result");
 
-        document.body.appendChild(particle);
+        result.textContent = message;
+        result.style.display = "block";
 
-        // Remove after done
-        setTimeout(() => particle.remove(), 2000);
-
-        if (Date.now() < end) {
-            requestAnimationFrame(frame);
-        }
-    })();
-}
-
-// Form handling
-document.getElementById("toiletForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const name = document.getElementById("name").value;
-    const date = document.getElementById("date").value;
-    const time = document.getElementById("time").value;
-
-    const result = document.getElementById("result");
-    result.textContent = `Hi ${name}, your toilet reservation on ${date} at ${time} has been booked!`;
-    result.style.display = "block";
-
-    // Confetti 🎉
-    launchConfetti();
-
-    // April Fools popup
-    setTimeout(() => {
-        alert("APRIL FOOLS! 😂 You don't need a reservation to use the toilet! (but you DO need the Bite Food App for the best lunches at Labs! :)");
-    }, 1500);
-});
+        // April Fools popup
+        setTimeout(() => {
+            alert("APRIL FOOLS! 😂 Of course you don't need to reserve the toilet! (but you DO need the Bite Food App for the best lunches at Labs!)");
+        }, 2000);
+    });
 </script>
 
 </body>
