@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toilet Afspraakplanner – 1 April</title>
+    <title>Toilet Reservation Planner – April Fools</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,7 +19,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        input, select, button {
+        input, button {
             width: 100%;
             padding: 12px;
             margin-top: 10px;
@@ -47,20 +47,20 @@
 <body>
 
 <div class="container">
-    <h2>Toilet Afspraakplanner 🚽</h2>
-    <p>Reserveer je tijdslot om gebruik te maken van het toilet.</p>
+    <h2>Toilet Reservation Planner 🚽</h2>
+    <p>Reserve your timeslot to use the toilet.</p>
 
     <form id="toiletForm">
-        <label>Naam:</label>
+        <label>Name:</label>
         <input type="text" id="name" required>
 
-        <label>Kies een datum:</label>
+        <label>Select a date:</label>
         <input type="date" id="date" required>
 
-        <label>Kies een tijd:</label>
+        <label>Select a time:</label>
         <input type="time" id="time" required>
 
-        <button type="submit">Afspraak inplannen</button>
+        <button type="submit">Book Reservation</button>
     </form>
 
     <p id="result"></p>
@@ -74,15 +74,15 @@
         const date = document.getElementById("date").value;
         const time = document.getElementById("time").value;
 
-        const message = `Beste ${name}, je toilet-afspraak op ${date} om ${time} is succesvol ingepland!`;
+        const message = `Hi ${name}, your toilet reservation on ${date} at ${time} has been successfully booked!`;
         const result = document.getElementById("result");
 
         result.textContent = message;
         result.style.display = "block";
 
-        // 1 april grap popup
+        // April Fools popup
         setTimeout(() => {
-            alert("1 APRIL! 😂 Natuurlijk hoef je geen afspraak te maken voor het toilet!");
+            alert("APRIL FOOLS! 😂 Of course you don't need to reserve the toilet!");
         }, 2000);
     });
 </script>
