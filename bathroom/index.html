@@ -1,91 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toilet Reservation Planner – April Fools</title>
-    <style>
-        body {
-            font-family: Roboto, sans-serif;
-            background: #f2f2f2;
-            padding: 40px;
-            text-align: center;
-        }
-        .container {
-            background: white;
-            padding: 25px;
-            max-width: 500px;
-            margin: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        input, button {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-        button {
-            background: #0078d4;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #005ea1;
-        }
-        #result {
-            margin-top: 20px;
-            font-weight: bold;
-            color: green;
-            display: none;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h2>Toilet Reservation Planner 🚽</h2>
-    <p>Reserve your timeslot to use the toilet.</p>
-
-    <form id="toiletForm">
-        <label>Name:</label>
-        <input type="text" id="name" required>
-
-        <label>Select a date:</label>
-        <input type="date" id="date" required>
-
-        <label>Select a time:</label>
-        <input type="time" id="time" required>
-
-        <button type="submit">Book Reservation</button>
-    </form>
-
-    <p id="result"></p>
-</div>
-
-<script>
-    document.getElementById("toiletForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-
-        const name = document.getElementById("name").value;
-        const date = document.getElementById("date").value;
-        const time = document.getElementById("time").value;
-
-        const message = `Hi ${name}, your toilet reservation on ${date} at ${time} has been successfully booked!`;
-        const result = document.getElementById("result");
-
-        result.textContent = message;
-        result.style.display = "block";
-
-        // April Fools popup
-        setTimeout(() => {
-            alert("APRIL FOOLS! 😂 Of course you don't need to reserve the toilet!");
-        }, 2000);
-    });
-</script>
-
-</body>
-</html>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        padding: 40px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .container {
+        background: white;
+        padding: 25px;
+        width: 100%;
+        max-width: 400px;
+        margin: auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    input, button {
+        width: 90%;
+        max-width: 300px;       /* voorkomt dat ze te breed worden */
+        padding: 12px;
+        margin-top: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        margin-left: auto;
+        margin-right: auto;     /* zorgt voor echte centrering */
+    }
+    button {
+        background: #0078d4;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #005ea1;
+    }
+    #result {
+        margin-top: 20px;
+        font-weight: bold;
+        color: green;
+        display: none;
+    }
+</style>
