@@ -1,53 +1,117 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1 April Grap</title>
-<style>
-    #aprilFoolsMessage {
-        display: none;
-        background: #ffcccc;
-        padding: 20px;
-        border: 2px solid red;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toilet Reservation Planner – AF</title>
+ <style>
+    body {
+        font-family: Roboto, sans-serif;
+        background: #f2f2f2;
+        padding: 40px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .container {
+        background: white;
+        padding: 25px;
+        width: 100%;
+        max-width: 400px;
+        margin: auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    input, button {
+        width: 90%;
+        max-width: 300px;
+        padding: 12px;
+        margin-top: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    button {
+        background: #0078d4;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #005ea1;
+    }
+    #result {
         margin-top: 20px;
-        font-size: 20px;
         font-weight: bold;
+        color: green;
+        display: none;
     }
 </style>
 </head>
 <body>
 
-<h1>Vul hieronder je gegevens in</h1>
+<div class="container">
+    <h2>Toilet Reservation Planner 🚽</h2>
+    <p>Reserve your timeslot to use the toilet.</p>
 
-<form id="fakeForm">
-    <label>Naam:</label><br>
-    <input type="text" id="naam"><br><br>
+    <form id="toiletForm">
+        <label>Name:</label>
+        <input type="text" id="name" required>
 
-    <label>Email:</label><br>
-    <input type="email" id="email"><br><br>
+        <label>Select a date:</label>
+        <input type="date" id="date" required>
 
-    <button type="button" id="verzendKnop">Verzenden</button>
-</form>
+        <label>Select a time:</label>
+        <input type="time" id="time" required>
 
-<div id="aprilFoolsMessage">🎉 1 APRIL! Je bent erin getrapt! 🎉</div>
+        <button type="submit">Book Reservation</button>
+    </form>
+
+    <p id="result"></p>
+</div>
 
 <script>
-    let messageShown = false;
+    let prankShown = false;
 
-    function showAprilFools() {
-        if (!messageShown) {
-            document.getElementById("aprilFoolsMessage").style.display = "block";
-            messageShown = true;
-        }
+    function showPrank() {
+        if (prankShown) return;
+        prankShown = true;
+
+        alert("APRIL FOOLS! 😂 Of course you don't need to reserve the toilet! (but you DO need the Bite Food App for the best lunches at Labs!)");
     }
 
-    // 1️⃣ Na 5 seconden automatisch
-    setTimeout(showAprilFools, 5000);
+    // 1️⃣ Automatische trigger na 5 seconden
+    setTimeout(showPrank, 5000);
 
-    // 2️⃣ Bij elke klik in het formulier of op knoppen
-    document.getElementById("fakeForm").addEventListener("click", showAprilFools);
-    document.getElementById("verzendKnop").addEventListener("click", showAprilFools);
+    // 2️⃣ Direct tonen bij klik in formulier (op velden of knoppen)
+    document.getElementById("toiletForm").addEventListener("click", showPrank);
+
+    // 3️⃣ Submit event blijft werken, maar triggert ook de grap
+    document.getElementById("toiletForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        if (!prankShown) showPrank();
+
+        const name = document.getElementById("name").value;
+        const date = document.getElementById("date").value;
+        const time = document.getElementById("time").value;
+
+        const message = `Hi ${name}, your toilet reservation on ${date} at ${time} has been successfully booked!`;
+        const result = document.getElementById("result");
+
+        result.textContent = message;
+        result.style.display = "block";
+    });
 </script>
 
 </body>
