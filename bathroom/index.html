@@ -4,59 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toilet Reservation Planner – AF</title>
- <style>
-    body {
-        font-family: Roboto, sans-serif;
-        background: #f2f2f2;
-        padding: 40px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-    }
-    .container {
-        background: white;
-        padding: 25px;
-        width: 100%;
-        max-width: 400px;
-        margin: auto;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        text-align: center;
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-    input, button {
-        width: 90%;
-        max-width: 300px;
-        padding: 12px;
-        margin-top: 10px;
-        border-radius: 6px;
-        border: 1px solid #ccc;
-        font-size: 16px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    button {
-        background: #0078d4;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
-    button:hover {
-        background: #005ea1;
-    }
-    #result {
-        margin-top: 20px;
-        font-weight: bold;
-        color: green;
-        display: none;
-    }
-</style>
+
+    <!-- Busuanzi pageview counter -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <style>
+        body {
+            font-family: Roboto, sans-serif;
+            background: #f2f2f2;
+            padding: 40px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        input, button {
+            width: 90%;
+            max-width: 300px;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button {
+            background: #0078d4;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #005ea1;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: green;
+            display: none;
+        }
+        footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
@@ -80,6 +90,10 @@
     <p id="result"></p>
 </div>
 
+<footer>
+    Total page views: <span id="busuanzi_value_site_pv">...</span>
+</footer>
+
 <script>
     let prankShown = false;
 
@@ -90,13 +104,13 @@
         alert("APRIL FOOLS! 😂 Of course you don't need to reserve the toilet! (but you DO need the Bite Food App for the best lunches at Labs!)");
     }
 
-    // 1️⃣ Automatische trigger na 5 seconden
+    // 1️⃣ Automatic trigger after 5 seconds
     setTimeout(showPrank, 5000);
 
-    // 2️⃣ Direct tonen bij klik in formulier (op velden of knoppen)
+    // 2️⃣ Trigger on any click inside the form
     document.getElementById("toiletForm").addEventListener("click", showPrank);
 
-    // 3️⃣ Submit event blijft werken, maar triggert ook de grap
+    // 3️⃣ Submit event shows prank + fake confirmation
     document.getElementById("toiletForm").addEventListener("submit", function(e) {
         e.preventDefault();
 
